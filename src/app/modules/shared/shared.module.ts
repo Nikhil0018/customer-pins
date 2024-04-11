@@ -6,24 +6,27 @@ import { ErrorInterceptor } from 'src/app/services/error.interceptor';
 import { CreateCustomerComponent } from './components/create-customer/create-customer.component';
 import { CreatePinComponent } from './components/create-pin/create-pin.component';
 import { NgxSelectModule } from 'ngx-select-ex';
+import { DropzoneDirective } from './directives/dropzone.directive';
+
 
 @NgModule({
   declarations: [
     CreateCustomerComponent,
-    CreatePinComponent
+    CreatePinComponent,
+    DropzoneDirective,
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxSelectModule
+    NgxSelectModule,
   ],
   exports: [
     FormsModule,
     ReactiveFormsModule,
     CreateCustomerComponent,
     CreatePinComponent,
-    NgxSelectModule
+    NgxSelectModule,
   ],
   providers: [
     {

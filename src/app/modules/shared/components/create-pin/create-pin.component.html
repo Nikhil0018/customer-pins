@@ -3,15 +3,83 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="pinModalTitle">Modal title</h5>
+                <h5 class="modal-title" id="pinModalTitle">Create Pin</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                
+            <div class="modal-body w-100 d-flex flex-column align-items-center px-5 gap-4">
+                <div class="w-100 d-flex align-items-baseline justify-content-center gap-3">
+                    <label class="w-25 d-flex align-items-center justify-content-end">Title*:</label>
+                    <div class="w-75 d-flex flex-column justify-content-center">
+                        <input type="text" class="form-control rounded-0 w-75" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default" [formControl]="formGroup.get('title')">
+                        <div *ngIf="formGroup.get('title')?.invalid && formGroup.get('title')?.touched" class="text-danger">
+                            Please enter a title
+                        </div>
+                    </div>
+                </div>
+                <div class="w-100 d-flex align-items-baseline justify-content-center gap-3">
+                    <label class="w-25 d-flex align-items-center justify-content-end">Image*:</label>
+                    <div class="w-75 d-flex flex-column justify-content-center">
+                        <div class="form-control rounded-0 w-75" DropZone (onFileDropped)="getDroppedFiles($event)" (click)="openAddFilesDialog()">
+                            <ng-container *ngIf="formGroup.get('image')?.value?.name">
+                                {{formGroup.get('image')?.value?.name}}
+                            </ng-container>
+
+                            <ng-container *ngIf="!formGroup.get('image')?.value?.name">
+                                Choose or Drag & Drop File here
+                            </ng-container>
+                        </div>
+                        <div *ngIf="formGroup.get('image')?.invalid && formGroup.get('image')?.touched" class="text-danger">
+                            Please upload an image
+                        </div>
+                        <input #fileSelect (click)="$event.target.value = null" class="d-none" type="file" accept=".png, .jpg" />
+
+                    </div>
+                </div>
+                <div class="w-100 d-flex align-items-baseline justify-content-center gap-3">
+                    <label class="w-25 d-flex align-items-center justify-content-end">Select Collaboratory*:</label>
+                    <div class="w-75 d-flex flex-column justify-content-center">
+                        <ngx-select 
+                            class="w-75 rounded-0" 
+                            [items]="customers" 
+                            [multiple]="true"
+                            [optionValueField]="'id'" 
+                            [optionTextField]="'title'"
+                            [formControl]="formGroup.get('collaboratory')">
+                        </ngx-select>
+                        <div *ngIf="formGroup.get('collaboratory')?.invalid && formGroup.get('collaboratory')?.touched" class="text-danger">
+                            Please select collaboratory
+                        </div>
+                    </div>
+                </div>
+                <div class="w-100 d-flex align-items-baseline justify-content-center gap-3">
+                    <label class="w-25 d-flex align-items-center justify-content-end">Privacy*:</label>
+                    <div class="w-75 d-flex flex-column justify-content-center">
+                        <div class="w-100 d-flex align-items-center gap-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="privacy" value="private" [formControl]="formGroup.get('privacy')" id="radio-private">
+                                <label class="form-check-label" for="radio-private">
+                                    Private
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="privacy" value="public" [formControl]="formGroup.get('privacy')" id="radio-public"
+                                    checked>
+                                <label class="form-check-label" for="radio-public">
+                                    Public
+                                </label>
+                            </div>
+                        </div>
+                        <div *ngIf="formGroup.get('privacy')?.invalid && formGroup.get('privacy')?.touched" class="text-danger">
+                            Please select a value
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary rounded-0" 
+                    (click)="onCreateCustomerClick()">Create Pin</button>
             </div>
         </div>
     </div>

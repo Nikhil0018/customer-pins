@@ -7,21 +7,28 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body w-100 d-flex flex-column align-items-center px-5 gap-4">
-                <div class="w-100 d-flex align-items-center justify-content-center gap-3">
+                <div class="w-100 d-flex align-items-baseline justify-content-center gap-3">
                     <label class="w-25 d-flex align-items-center justify-content-end">Title*:</label>
-                    <div class="w-75 d-flex align-items-center">
+                    <div class="w-75 d-flex flex-column justify-content-center">
                         <input type="text" class="form-control rounded-0 w-75" aria-label="Default" aria-describedby="inputGroup-sizing-default" [formControl]="formGroup.get('title')">
+                        <div *ngIf="formGroup.get('title')?.invalid && formGroup.get('title')?.touched" class="text-danger">
+                            Please enter a title
+                        </div>
                     </div>
                 </div>
-                <div class="w-100 d-flex align-items-center justify-content-center gap-3">
+                <div class="w-100 d-flex align-items-baseline justify-content-center gap-3">
                     <label class="w-25 d-flex align-items-center justify-content-end">Email*:</label>
-                    <div class="w-75 d-flex align-items-center">
+                    <div class="w-75 d-flex flex-column justify-content-center">
                         <input type="text" class="form-control rounded-0 w-75" aria-label="Default" aria-describedby="inputGroup-sizing-default" [formControl]="formGroup.get('email')">
+                        <div *ngIf="formGroup.get('email')?.invalid && formGroup.get('email')?.touched" class="text-danger">
+                            Please enter a valid email
+                        </div>
+                    
                     </div>
                 </div>
-                <div class="w-100 d-flex align-items-center justify-content-center gap-3">
+                <div class="w-100 d-flex align-items-baseline justify-content-center gap-3">
                     <label class="w-25 d-flex align-items-center justify-content-end">Region*:</label>
-                    <div class="w-75 d-flex align-items-center">
+                    <div class="w-75 d-flex flex-column justify-content-center">
                         <ngx-select 
                             class="w-75 rounded-0"
                             [items]="regions" 
@@ -29,11 +36,14 @@
                             [optionTextField]="'name'"
                             [formControl]="formGroup.get('region')">
                         </ngx-select>
+                        <div *ngIf="formGroup.get('region')?.invalid && formGroup.get('region')?.touched" class="text-danger">
+                            Please select a region
+                        </div>
                     </div>
                 </div>
-                <div class="w-100 d-flex align-items-center justify-content-center gap-3">
+                <div class="w-100 d-flex align-items-baseline justify-content-center gap-3">
                     <label class="w-25 d-flex align-items-center justify-content-end">Country*:</label>
-                    <div class="w-75 d-flex align-items-center">
+                    <div class="w-75 d-flex flex-column justify-content-center">
                         <ngx-select 
                             class="w-75 rounded-0"
                             [items]="countries" 
@@ -41,11 +51,14 @@
                             [optionTextField]="'name'"
                             [formControl]="formGroup.get('country')">
                         </ngx-select>
+                        <div *ngIf="formGroup.get('country')?.invalid && formGroup.get('country')?.touched" class="text-danger">
+                            Please select a country
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-secondary rounded-0" data-bs-dismiss="modal" (click)="onCreateCustomerClick()">Create Customer</button>
+                <button type="button" class="btn btn-secondary rounded-0" (click)="onCreateCustomerClick()">Create Customer</button>
             </div>
         </div>
     </div>

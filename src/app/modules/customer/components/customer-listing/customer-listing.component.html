@@ -4,8 +4,8 @@
 
         <div class="d-flex align-items-center w-100 justify-content-end">
             <div class="d-flex flex-column gap-3">
-                <button type="button" class="btn btn-lg btn-secondary rounded-0" data-bs-toggle="modal" data-bs-target="#customerModal">+ Add Customer</button>
-                <button type="button" class="btn btn-lg btn-secondary  rounded-0" data-bs-toggle="modal" data-bs-target="#pinModal">+ Add Pin</button>
+                <button #customerModalTrigger type="button" class="btn btn-lg btn-secondary rounded-0" data-bs-toggle="modal" data-bs-target="#customerModal">+ Add Customer</button>
+                <button #pinModalTrigger type="button" class="btn btn-lg btn-secondary  rounded-0" data-bs-toggle="modal" data-bs-target="#pinModal">+ Add Pin</button>
             </div>
         </div>
 
@@ -22,18 +22,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row" class="fw-normal text-center">Pin 1</th>
-                        <td class="text-center">
-                            <img src="">
+                    <tr *ngFor="let pin of pins">
+                        <th scope="row" class="align-middle fw-normal text-center">{{pin?.title | titlecase}}</th>
+                        <td class="text-center align-middle">
+                            <img class="w-100 object-fit-contain" [src]="pin?.image" [style.height]="'60px'">
                         </td>
-                        <td class="text-center">
+                        <td class="text-center align-middle">
                             <div class="d-flex flex-column align-items-center">
-                                <div class="customer-name">Customer 1</div>
-                                <div class="customer-name">Customer 2</div>
+                                <div class="customer-name" *ngFor="let collab of pin.collaboratory">
+                                {{ getCustomerNameFromId(collab) }}
+                            </div>
                             </div>
                         </td>
-                        <td class="text-center">Private</td>
+                        <td class="text-center align-middle">{{pin?.privacy | titlecase}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -53,5 +54,9 @@
 <!-- ! End of Customer Modal -->
 
 <!-- ! Pin Modal -->
-<app-create-pin></app-create-pin>
+<app-create-pin
+    [formGroup]="pinForm"
+    [customers]="customers"
+    (onSubmit)="createPin($event)"
+></app-create-pin>
 <!-- ! End of Pin Modal -->
