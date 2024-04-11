@@ -1,0 +1,57 @@
+<section class="h-100 w-100 d-flex align-items-center justify-content-center">
+
+    <div class="listing-wrapper p-5">
+
+        <div class="d-flex align-items-center w-100 justify-content-end">
+            <div class="d-flex flex-column gap-3">
+                <button type="button" class="btn btn-lg btn-secondary rounded-0" data-bs-toggle="modal" data-bs-target="#customerModal">+ Add Customer</button>
+                <button type="button" class="btn btn-lg btn-secondary  rounded-0" data-bs-toggle="modal" data-bs-target="#pinModal">+ Add Pin</button>
+            </div>
+        </div>
+
+        <div class="d-flex flex-column gap-3">
+            <h2>List of pins</h2>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">Title</th>
+                        <th scope="col" class="text-center">Image</th>
+                        <th scope="col" class="text-center">Collaboratory</th>
+                        <th scope="col" class="text-center">Privacy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row" class="fw-normal text-center">Pin 1</th>
+                        <td class="text-center">
+                            <img src="">
+                        </td>
+                        <td class="text-center">
+                            <div class="d-flex flex-column align-items-center">
+                                <div class="customer-name">Customer 1</div>
+                                <div class="customer-name">Customer 2</div>
+                            </div>
+                        </td>
+                        <td class="text-center">Private</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ! Customer Modal -->
+<app-create-customer
+    [formGroup]="customerForm"
+    [regions]="regions"
+    [countries]="countries"
+    (onSubmit)="createCustomer($event)"
+></app-create-customer>
+<!-- ! End of Customer Modal -->
+
+<!-- ! Pin Modal -->
+<app-create-pin></app-create-pin>
+<!-- ! End of Pin Modal -->

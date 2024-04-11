@@ -1,0 +1,52 @@
+<!-- Modal -->
+<div class="modal fade" id="customerModal" tabindex="-1" aria-labelledby="customerModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="customerModalTitle">Create customer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body w-100 d-flex flex-column align-items-center px-5 gap-4">
+                <div class="w-100 d-flex align-items-center justify-content-center gap-3">
+                    <label class="w-25 d-flex align-items-center justify-content-end">Title*:</label>
+                    <div class="w-75 d-flex align-items-center">
+                        <input type="text" class="form-control rounded-0 w-75" aria-label="Default" aria-describedby="inputGroup-sizing-default" [formControl]="formGroup.get('title')">
+                    </div>
+                </div>
+                <div class="w-100 d-flex align-items-center justify-content-center gap-3">
+                    <label class="w-25 d-flex align-items-center justify-content-end">Email*:</label>
+                    <div class="w-75 d-flex align-items-center">
+                        <input type="text" class="form-control rounded-0 w-75" aria-label="Default" aria-describedby="inputGroup-sizing-default" [formControl]="formGroup.get('email')">
+                    </div>
+                </div>
+                <div class="w-100 d-flex align-items-center justify-content-center gap-3">
+                    <label class="w-25 d-flex align-items-center justify-content-end">Region*:</label>
+                    <div class="w-75 d-flex align-items-center">
+                        <ngx-select 
+                            class="w-75 rounded-0"
+                            [items]="regions" 
+                            [optionValueField]="'name'"
+                            [optionTextField]="'name'"
+                            [formControl]="formGroup.get('region')">
+                        </ngx-select>
+                    </div>
+                </div>
+                <div class="w-100 d-flex align-items-center justify-content-center gap-3">
+                    <label class="w-25 d-flex align-items-center justify-content-end">Country*:</label>
+                    <div class="w-75 d-flex align-items-center">
+                        <ngx-select 
+                            class="w-75 rounded-0"
+                            [items]="countries" 
+                            [optionValueField]="'name'"
+                            [optionTextField]="'name'"
+                            [formControl]="formGroup.get('country')">
+                        </ngx-select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary rounded-0" data-bs-dismiss="modal" (click)="onCreateCustomerClick()">Create Customer</button>
+            </div>
+        </div>
+    </div>
+</div>
